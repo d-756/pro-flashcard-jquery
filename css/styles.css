@@ -1,0 +1,1565 @@
+
+/*---
+
+NEUTRAL COLOR RANGE -------------
+    negative color = #fff
+    very light = #f8f8f8
+    light = #bebebe
+    medium = #818181
+    dark = #363636
+    black = #000
+
+THEME COLORS --------------------------
+    Braincat blue = #4eabdb
+        variant (dark) = #1550a4
+        variant (very light) = #f9fafb
+
+ACTION COLORS -------------------------
+    positive = #449d44
+        variant = #3a863a
+    negative = #bf4d4d
+        variant = #ac3d3d
+
+COMMON BORDER ----------------------
+    radius: 0
+    width: 1px
+    color: #bebebe
+
+---*/
+
+
+
+
+/*--- RESET/NORMALIZE ------------------------------*/
+body, h1, h2, h3, h4, figure, dl, dd, pre, blockquote, input[type="radio"], input[type="checkbox"] {margin:0}
+legend {padding:0}
+fieldset, ul, ol {padding:0;margin:0}
+ul, ol {list-style:none}
+body {line-height:1}
+main, figure, figcaption, img {display:block} /*--- <main> for IE 11 ---*/
+a {text-decoration:none}
+img {max-width:100%;height:auto}
+fieldset {border:0}
+input, textarea, select, button {display:block;max-width:100%;font-family:inherit;font-size:inherit;color:inherit}
+label {display:table}
+input[type="text"], input[type="email"], input[type="password"], input[type="search"], input[type="tel"], input[type="number"], input[type="button"], input[type="submit"], textarea {-webkit-appearance:none} /*--- for Safari (add/remove types as needed) ---*/
+button {line-height:inherit}
+button::-moz-focus-inner {border:0} /*--- for Firefox ---*/
+html {-ms-text-size-adjust:100%;-moz-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+
+
+
+
+
+/*--- BASE/COMMON -----------------------------------------------------*/
+body {display:flex;flex-direction:column;min-height:100vh;min-width:18em;font-family:'Montserrat', sans-serif;color:#363636;position:relative}
+
+
+    /*--- general links ---*/
+    a {color:#4eabdb;word-wrap:break-word}
+        a:hover, a:focus {color:#1550a4}
+
+
+    /*--- headings ---*/
+    h1, h2, h3, h4 {font-weight:500;line-height:1.2;color:#1550a4;margin:0 0 .25rem}
+        h1 {padding-top:0;font-size:1.8em;text-transform:uppercase;margin-bottom:1.75em}
+        h2 {padding-top:2rem;font-size:1.35em}
+            h1 + h2 {padding-top:0;margin-top:-.17em}
+        h3 {padding-top:1rem;font-size:1em}
+            h2 + h3 {}
+
+
+    /*--- horizontal rule ---*/
+    sup {vertical-align:top;font-size:.8em}
+
+
+    /*--- general text ---*/
+    p {line-height:1.4;margin:0 0 .5rem}
+        p a, b {font-weight:600}
+
+
+    /*--- horizontal rule ---*/
+    hr {border:none;border-top:1px solid #bebebe;margin:1.5em 0}
+
+
+    /*--- soft hover ---*/
+    a, a::before, a::after, button, button::before, button::after, label, input[type="button"], input[type="submit"] {transition:background-color .2s, border-color .2s, color .2s}
+
+
+    /*--- forms ---------------------------------------------------------*/
+    form {margin:0 0 1em}
+
+        /*--- content forms ------------------*/
+        main > form {max-width:30em}
+
+            @media (min-width:106.5em) {
+                main > form {max-width:none;width:calc(50% - 1em)}
+                .sidebar.hidden + main > form {width:calc(33.3333333333% + 6.75em)}
+            }
+
+
+        /*--- full-width forms ----------------*/
+        #DiscoverSkiffAddForm, #DiscoverSkiffEditForm, #DiscoverQuestionAddForm, #DiscoverQuestionEditForm {width:auto;max-width:none}
+
+
+        /*--- multi-pane forms ---------------*/
+        .multi-pane > div > form {max-width:30em}
+
+            @media (min-width:106.5em) {
+                .multi-pane > div > form {max-width:none;width:50%}
+                .sidebar.hidden + main.multi-pane > div > form {width:calc(50% + 5rem)}
+            }
+
+
+        /*--- form elements ------------------*/
+
+        /*--- fieldsets ---*/
+        fieldset {margin:.5em 0 0}
+            legend {margin:0 0 1em}
+
+        /*--- labels ---*/
+        label {line-height:1.2;font-weight:500;color:#1550a4}
+            label a {font-weight:bold}
+
+        /*--- inputs --------------*/
+        input, textarea, select {box-sizing:border-box;width:100%;max-width:100%;padding:.5em 0;background-color:#fff;border-style:none;border-bottom:1px solid #bebebe;border-radius:0;margin:0 0 1rem;text-overflow:ellipsis;transition:border-color .2s;outline:0/*--- focus state replaced below ---*/}
+            textarea {padding-left:.5em;padding-right:.5em;border:1px solid #bebebe}
+            input:focus, textarea:focus, select:focus {border-color:#1550a4}
+
+            /*--- placeholder text ---*/
+            :-ms-input-placeholder {color:#bebebe} /*--- IE 11 ---*/
+            ::-ms-input-placeholder {color:#bebebe} /*--- Edge ---*/
+            ::placeholder {color:#bebebe;opacity:1} /*--- opacity for Firefox ---*/
+
+                /*--- focus state ---*/
+                :focus::-ms-input-placeholder {opacity:0} /*--- Edge ---*/
+                :focus::-moz-placeholder {opacity:0} /*--- Firefox ---*/
+                :focus::placeholder {opacity:0;transition:opacity .2s .5s}
+
+
+        /*--- custom <select> dropdown arrows -------------------*/
+        .select-container {display:inline-block;width:100%;max-width:100%;position:relative;margin:0 0 1rem}
+
+            /*--- faux dropdown button ---*/
+            .select-container::before {display:block;width:2.25em;background-color:#4eabdb;position:absolute;top:0;bottom:0;right:0;pointer-events:none;transition:background-color .2s;content:""}
+                .select-container:hover::before, .select-container:focus-within:before {background-color:#1550a4}
+
+            /*--- faux dropdown arrow ---*/
+            .select-container::after {display:block;width:0;height:0;border:0 solid transparent;border-width:.5em .4em 0 .4em;border-top-color:#fff;position:absolute;top:.9em;right:.75em;pointer-events:none;content:""}
+
+            /*--- select ---*/
+            .select-container select {-webkit-appearance:none;width:100%;padding-right:2.5em;margin-bottom:0} /*--- -webkit-appearance for Safari ---*/
+
+
+        /*--- checkbox/radio inputs --------------------------------------*/
+        input[type='checkbox'], input[type='radio'] {width:auto;position:absolute;clip:rect(0 0 0 0);float:left;margin:.2em .2em 0 .2em}
+                input[type='checkbox']:focus, input[type='radio']:focus {outline:2px solid #1550a4;outline-offset:1px}
+
+            /*--- labels -----------*/
+            input[type='checkbox'] + label, input[type='radio'] + label {color:#4eabdb;margin-bottom:1em}
+                input[type='checkbox']:focus + label, input[type='radio']:focus + label {color:#1550a4}
+                input[type='checkbox'] + label[for]:hover, input[type='radio']:not(:checked) + label[for]:hover {color:#1550a4}
+
+                /*--- required labels ---*/
+                /*.required label::after {color:#4eabdb;content:" *"}*/
+
+                /*--- input hints ---*/
+                .input-hint {font-size:.8em;color:#818181;font-style:italic;margin:0 0 1rem}
+                    input + .input-hint {margin-top:-.7em}
+                        .input-hint span {color:#4eabdb;font-weight:bold}
+
+                /*--- error message ---*/
+                .error-message {font-size:.6em;color:#bf4d4d;font-style:italic;margin:0 0 1rem}
+                input + .error-message {margin-top:-.7em}
+
+
+            /*--- custom/faux checkbox/radio selectors -----------*/
+            input[type='checkbox'] + label, input[type='radio'] + label {padding-left:1.2rem;position:relative}
+                input[type='checkbox'] + label::after, input[type='radio'] + label::after {box-sizing:border-box;display:block;width:1em;height:1em;background-color:#fff;border:1px solid #bebebe;font-size:.72rem;position:absolute;top:.32em;left:.1em;content:""}
+                    input[type='checkbox']:focus + label::after, input[type='radio']:focus + label::after {border-color:#1550a4}
+                    input[type='radio'] + label::after {border-radius:50%}
+
+                /*--- checked state ---*/
+                input[type='checkbox']:checked + label, input[type='radio']:checked + label {color:#1550a4}
+                input[type='checkbox']:checked + label::after, input[type='radio']:checked + label::after {background-color:#1550a4;box-shadow:inset 0 0 0 2px #fff}
+
+                /*--- labels without for="" attribute ---
+                input[type='checkbox'] + label:not([for])::after, input[type='radio'] + label:not([for])::after {display:none}*/
+
+
+    /*--- button style ------------------------------------------------------------------------------------*/
+    button, input[type="button"], input[type="submit"], .button {width:auto;padding:.8em 1.5em;background-color:#4eabdb;border:none;line-height:1.2;text-align:center;text-transform:uppercase;font-weight:normal;color:#fff;margin:0 0 1rem;cursor:pointer;/* outline:0 --- focus state replaced below ---*/}
+        button:hover, input[type="button"]:hover, input[type="submit"]:hover, .button:hover, input[type="button"]:focus, input[type="submit"]:focus, .button:focus {background-color:#1550a4;color:#fff}
+
+            /*--- <input> buttons ---*/
+            input[type="button"], input[type="submit"] {white-space:normal}
+
+            /*--- button-styled <a>s ---*/
+            a.button {display:table}
+
+            /*--- active state ---*/
+            
+                button.active:hover, button.active:focus {}
+
+            /*--- following conent ---*/
+            p+ button, fieldset + button {margin-top:2em}
+
+
+    /*--- messages ------------------------------------*/
+    [class^="message"] {padding:.5em .5em .45em;background-color:#818181;font-family:'Montserrat';font-weight:normal;font-size:1em;text-transform:uppercase;text-align:center;color:#fff;margin:0 0 1rem}
+        .message-success {background-color:#449d44}
+        .message-error {background-color:#bf4d4d}
+
+
+    /*--- user generated text -----------------------------*/
+    .user-generated {color:#363636}
+
+    /*--- system generated text -----------------------------*/
+    .system-generated {color:#1550a4}
+
+
+    /*--- project title -------------------------------------*/
+    .project-title {font-size:.85em;text-transform:uppercase;font-weight:600;white-space:nowrap;text-overflow:ellipsis;position:absolute;top:2em;left:3rem;right:.5rem;transition:left .2s;overflow:hidden}
+
+        @media (min-width:30em) {
+            .project-title {right:1rem}
+        }
+
+        @media (min-width:50em) {
+            .project-title {left:1rem}
+
+                /*--- sidebar hidden state---*/
+                .sidebar.hidden + main .project-title {left:3.5em}
+        }
+
+
+    /*--- button group -------------------------------------*/
+    .button-group {display:flex;flex-wrap:wrap;margin:0 0 1rem}
+        .button-group button, .button-group .button {margin:0 .5rem .5rem 0}
+
+
+    /*--- bullet lists -------------------------------------*/
+    .bullet-list, ol.bullet-list, main > ul:not([class]):not([id]), main > ol:not([class]):not([id])  {margin:0 0 1em}
+        .bullet-list li, main > ul:not([class]):not([id]) li, main > ol:not([class]):not([id]) li {padding:0 0 0 .8em;line-height:1.4;position:relative;margin:0 0 1em}
+            .bullet-list li::before, main > ul:not([class]):not([id]) li::before, main > ol:not([class]):not([id]) li::before {display:block;width:.4em;height:.4em;background-color:#818181;border-radius:50%;position:absolute;top:.5em;left:0;content:""}
+
+        /*--- links ---*/
+        .bullet-list a, main > ul:not([class]):not([id]) a {font-weight:500}
+
+        /*--- numbered list ---*/
+        ol.bullet-list, main > ol:not([class]):not([id]) {counter-reset:numbered-item}
+            ol.bullet-list li, main > ol:not([class]):not([id]) li {padding-left:1.6em}
+                ol.bullet-list li::before, main > ol:not([class]):not([id]) li::before {display:flex;align-items:center;justify-content:center;height:2em;width:2em;font-size:.6em;color:#fff;top:.1em;counter-increment:numbered-item;content:counter(numbered-item)}
+
+
+        ol.bullet-list {counter-reset:numbered-item}
+            ol.bullet-list > li::before {display:flex;align-items:center;justify-content:center;height:2em;width:2em;font-size:.5em;counter-increment:numbered-item;content:counter(numbered-item)}
+
+
+/*--- embedded video ------------------------------------*/
+.video {position:relative;margin:0 auto 1em}
+
+    /*--- pseudo element ---*/
+    .video::before {display:block;padding-top:56.25%;content:""}
+
+    /*--- <iframe> ---*/
+    .video iframe {width:100%;height:100%;border:0;position:absolute;top:0}
+
+
+
+
+
+
+
+
+/*--- CATEGORY CLOUD -----------------------------------------------------*/
+.category-cloud, .category-cloud ul {display:flex;flex-wrap:wrap;margin:0 0 2em}
+        .category-cloud li {margin:0 .2em .2em 0}
+
+            /*--- buttons/links---*/
+            .category-cloud button, .category-cloud a {display:block;padding:.5em .5em;background-color:#fff;border:.05rem solid #4eabdb;font-size:.8em;color:#363636;margin:0;word-wrap:break-word}
+                .category-cloud button:hover, .category-cloud button:focus, .category-cloud a:hover, .category-cloud a:focus {border-color:#1550a4}
+                .category-cloud a {padding-top:.6em;padding-bottom:.6em;text-transform:uppercase}
+
+    /*--- alternate version ---*/
+    .category-cloud.alt button, .category-cloud.alt a {background-color:#d9d9d9;border-color:#d9d9d9;color:#363636}
+        .category-cloud.alt button:hover, .category-cloud.alt button:focus, .category-cloud.alt a:hover, .category-cloud.alt a:focus {background-color:#bebebe;border-color:#bebebe}
+
+
+
+
+
+
+
+/*--- OVERLAY --------------------------------------*/
+#overlay {box-sizing:border-box;max-width:48em;padding:.5em;background-color:#fff;/*background-color:rgb(255, 255, 255)*/;box-shadow:0 0 .5em rgba(0,0,0,.5), 0 0 0 20000px rgba(0,0,0,.3);margin:0 .5em;position:absolute;top:0;left:0;right:0;z-index:1000;opacity:0;transition:opacity .2s}
+
+        @media (min-width:30em) { /*--- common breakpoint ---*/
+            #overlay {padding:1em;margin-left:1em;margin-right:1em}
+        }
+
+        @media (min-width:50em) {
+            #overlay {margin-left:auto;margin-right:auto}
+        }
+
+
+    /*--- open state ---*/
+    #overlay.open {opacity:1}
+
+        /*--- focus leaves overlay ---
+        #overlay.open:not(:focus-within) {background-color:red;transition:background-color .01s}*/
+
+
+    /*--- close button ---*/
+    #overlay > button:first-child {display:block;width:2em;height:2em;padding:0;border-radius:50%;box-shadow:0 0 .1em 0 rgba(0,0,0,.5);position:absolute;top:-.5em;right:-.5em;z-index:1;margin:0;overflow:hidden}
+        #overlay > button:first-child::before {display:block;height:200%;content:""}
+        #overlay > button:first-child::after {display:block;width:1em;height:1em;background:url(https://access.thebraincat.com/css/images/braincat-icon-sprite.svg) no-repeat -42em center;background-size: auto 100%;font-size:.8em;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;content:"";filter:invert(1) brightness(100)}
+
+    /*--- last content element ---*/
+    #overlay :last-child {margin-bottom:0}
+
+    /*--- headings ---*/
+    #overlay h1 {margin-bottom:1rem}
+        #overlay h2 {padding-top:0}
+
+
+
+
+/*--- SIGN IN OVERLAY --------------------------------------*/
+.sign-in-group {}
+    .sign-in-group h1 {margin-bottom:.5em}
+
+
+
+
+
+
+
+/*--- HEADER -------------------------------------------------------------------------------------------------------*/
+header.site {flex-basis:100%;background-color:#4eabdb;color:#fff}
+
+    /*--- nav bar ----------------------*/
+    header.site nav {margin:0 auto}
+
+        /*--- menu -----------------*/
+        header.site ul {display:flex;counter-reset:step}
+            header.site li {flex:1 0 auto}
+                header.site a {display:block;height:1em;padding:1.3em 0;text-align:center;font-size:.9em;font-size:calc(0.9em + ((1vw - 0.18em) * 0.8333));text-transform:uppercase;color:#fff;position:relative}
+
+                    /*--- dividers ---*/
+                    header.site li:not(:first-child) a {margin-left:-1px}
+                        header.site li:not(:first-child) a::after {display:block;width:1px;background-color:#cae6f4;position:absolute;top:20%;bottom:20%;left:0;content:""}
+
+                    /*--- hover/focus ---*/
+                    header.site a:hover, header.site a:focus {background-color:#cae6f4;font-weight:600;color:#1550a4}
+
+                    /*--- active state ---*/
+                    header.site li.active a {background-color:#1550a4;font-weight:600;color:#fff;position:relative;z-index:1}
+                        header.site li:not(:first-child).active a::after {background-color:#1550a4}
+
+                    @media (min-width:22em) {
+                            /*--- numbers ---*/
+                            header.site2 li:not(:first-child) a::before {display:inline-flex;align-items:center;justify-content:center;vertical-align: top;height:1.2em;width:1.2em;background-color:#942f21;border-radius:50%;font-size:.9em;font-weight:normal;color:#fff;margin:-.1em .4em 0 0;counter-increment:step;content:counter(step)}
+
+                            header.site li:not(:first-child) a::before {display:inline-flex;align-items:center;justify-content:center;vertical-align: top;height:1.2em;width:1.2em;background-color:#fff;border-radius:50%;font-size:.9em;font-weight:normal;color:#4eabdb;margin:-.1em .4em 0 0;counter-increment:step;content:counter(step)}
+
+                                /*--- hover/focus ---*/
+                                header.site li:not(:first-child) a:hover::before, header.site li:not(:first-child) a:focus::before {background-color:#1550a4;color:#fff}
+
+                                /*--- active ---*/
+                                header.site li:not(:first-child).active a::before {background-color:#942f21;color:#fff}
+                                    header.site li:nth-child(3).active a::before {background-color:#cf8725}
+                                    header.site li:nth-child(4).active a::before {background-color:#038b84}
+                    }
+
+                    @media (min-width:30em) { /*--- common breakpoint ---*/
+                        header.site li {flex-basis:0}
+                            header.site a {font-size:1em}
+                    }
+
+            /*--- first item (logo) ---*/
+            header.site li:first-child {flex-grow:0}
+                header.site li:first-child a {width:3.6em;min-height:100%;padding:0;color:#fff;z-index:1;overflow:hidden}
+                    header.site li:first-child a::before {display:block;height:200%;content:""}
+                    header.site li:first-child a::after {display:block;height:1em;width:1em;background:url(https://access.thebraincat.com/css/images/braincat-icon-sprite.svg) no-repeat -48em center;background-size:auto 100%;font-size:2.5em;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;filter:brightness(0) invert(1);transition:filter .2s;content:""}
+
+                /*--- hover/focus ---*/
+                header.site li:first-child:not(.active) a:hover::after, header.site li:first-child:not(.active) a:focus::after {filter:brightness(1) invert(0)}
+
+                /*--- active state ---*/
+                header.site li:first-child.active a::after {}
+
+                @media (min-width:50em) { /*--- common breakpoint ---*/
+                    header.site li:first-child a {box-sizing:border-box;width:10.5rem}
+                        header.site li:first-child a::after {font-size:3.5em}
+                }
+
+
+
+
+
+
+
+/*--- SIDEBAR WRAPPER -----------------------------------------*/
+.wrapper {flex:1;width:100%;position:relative;margin:0 auto}
+
+    @media (min-width:50em) { /*--- common breakpoint ---*/
+        .wrapper {display:flex}
+    }
+
+
+
+
+
+
+/*--- SIDEBAR ---------------------------------------------------------*/
+.sidebar {visibility:visible;width:10.5rem;box-sizing:border-box;padding:4em .5em .5em;background-color:#f9fafb;border:1px solid #bebebe;border-width: 0 1px 1px 0;box-shadow:.1em 0 .1em rgba(0,0,0,.2);color:#363636;position:absolute;top:0;bottom:0;z-index:100;margin-left:0;transition:visibility 0s 0s, margin .2s}
+
+    /*--- hidden state ---*/
+    .sidebar.hidden {visibility:hidden;margin-left:-10.5rem;transition-delay:.2s, 0s}
+
+    @media (min-width:50em) { /*--- common breakpoint ---*/
+        .sidebar {flex:0 0 auto;position:relative;box-shadow:none}
+    }
+
+    @media (min-width:80em) { /*--- common breakpoint ---*/
+        .sidebar {margin-right:1em}
+
+            /*--- hidden state ---*/
+            .sidebar.hidden {margin-right:0}
+    }
+
+
+/*--- headings --------------*/
+.sidebar h2, .sidebar h3 {padding:0 0 0 .5rem;font-size:1em;text-transform:uppercase;font-weight:600;margin:-2.5rem 0 1.3rem}
+    .sidebar h3 {font-size:.8em;margin:1.3rem 0 .8rem}
+
+    /*--- step indicator ---*/
+    #input .sidebar h2 {color:#942f21}
+    #organize .sidebar h2 {color:#cf8725}
+    #output .sidebar h2 {color:#038b84}
+
+
+/*--- sidebar toggle --------------*/
+.sidebar > button {width:2.5em;height:2.5em;padding:0;background-color:transparent;font-size:1em;position:absolute;top:.8em;right:1px;overflow:hidden;margin:0;transition:right .2s, background-color .2s;cursor:pointer}
+    .sidebar > button::before {display:block;height:200%;content:""}
+    .sidebar > button::after {display:block;height:0;width:0;border:0 solid transparent;border-width:.4em .5em .4em 0;border-left-color:#4eabdb;border-right-color:#4eabdb;font-size:1rem;position:absolute;top:0;bottom:0;left:1em;right:0;margin:auto;content:"";transition:border-color .2s, left .2s, right .2s}
+    .sidebar > button:hover, .sidebar > button:focus {background-color:#4eabdb}
+        .sidebar > button:hover::after, .sidebar > button:focus::after {border-left-color:#fff;border-right-color:#fff}
+
+    /*--- hidden state ---*/
+    .sidebar.hidden > button {visibility:visible;right:-2.5em}
+        .sidebar.hidden > button::after{border-left-width:.5em;border-right-width:0;left:0;right:1em}
+
+
+/*--- sidebar menu -----------------------*/
+.sidebar ul {}
+
+    /*--- all but last <ul> --------*/
+    .sidebar ul:not(:last-of-type) {padding-bottom:1em;border-bottom:1px solid #bebebe;margin-bottom:1.4em}
+
+    /*--- items --------*/
+    .sidebar li {margin:0 0 .5em}
+        .sidebar a {display:block;padding:.3em .5rem;font-size:1em;line-height:1.2}
+            .sidebar a:not(.button):hover, .sidebar a:not(.button):focus {background-color:#4eabdb;color:#fff}
+
+        /*--- active item ---*/
+        .sidebar .active a {background-color:#1550a4;color:#fff}
+
+    /*--- separator ---*/
+    .sidebar li.break {padding-top:.5em;border-top:1px solid #bebebe}
+
+    /*--- nested lists ---*/
+    .sidebar li ul {padding:0 1em .5em}
+        .sidebar li li {}
+            .sidebar li li a {padding:.3em .5em;font-size:.7em}
+
+
+
+
+
+
+
+
+/*--- CONTENT AREA ------------------------------------------------*/
+main {align-self:flex-start;;padding:3.55em .5em 2em;position:relative}
+
+    @media (min-width:30em) { /*--- common breakpoint ---*/
+        main {padding-left:1em;padding-right:1em}
+    }
+
+    @media (min-width:50em) { /*--- common breakpoint ---*/
+        main {flex:0 1 100%}
+    }
+
+    @media (min-width:70em) {
+        main {flex-basis:57.5em}
+            .sidebar.hidden + main {flex-basis:100%}
+    }
+
+    @media (min-width:100em) { /*--- common breakpoint ---*/
+        main {flex-basis:calc(66.666666666% - 9rem)}
+    }
+
+
+
+
+
+
+
+/*--- FOOTER -----------------------------------------------------*/
+footer.site {flex-basis:100%;padding:.5rem 1rem;background-color:#f9fafb;border-top:1px solid #bebebe;font-size:.8em;line-height:1.4;color:#818181;text-align:center;margin-top:-1px}
+    footer.site span {display:inline-block}
+    footer.site a {display:inline-block;padding:.4em;font-weight:500}
+
+
+
+
+
+
+
+/*--- SIGN IN/ADMIN PAGES --------------------------------------------------------------------------------------------*/
+.full-page {box-sizing:border-box;display:block;min-height:100vh;padding:0 .5em 0;margin:0}
+
+    /*--- logo ---*/
+    .full-page:before {display:block;width:auto;height:.225em;padding:.7rem 0 .4rem;background:#4eabdb url(https://access.thebraincat.com/css/images/braincat-logo.svg) no-repeat center;background-size:contain;background-origin:content-box;font-size:14em;margin:0 -.5rem 3rem;content:"";content:"" / "Braincat"}
+
+
+    /*--- sign in box ---------------------------*/
+    .sign-in {box-shadow:0 .1em .21em .1em rgba(0,0,0,.2)}
+
+
+    /*--- dialog box ---------------------------------*/
+    .dialog {max-width:18em;padding:0 .5em .5em;background-color:#fff;border:1px solid #bebebe;margin:0 auto 1em}
+
+        /*--- last element---*/
+        .dialog :last-child {margin-bottom:0}
+
+        /*--- heading ---*/
+        .dialog h1 {padding:1.2em .3em .8em;background-color:#f8f8f8;border-bottom:1px solid #bebebe;font-size:1.4em;color:#4eabdb;text-transform:none;text-align:center;margin:0 -.5rem 1rem}
+            .dialog h1 span {display:inline-block}
+
+
+        /*--- forms -------------------------------------------*/
+        .dialog form {margin-bottom:0}
+
+            /*--- <label>s ---*/
+            .dialog input:not([type="checkbox"]) + label {position:absolute;clip:rect(0 0 0 0)}
+
+            /*--- <input>s ---*/
+            .dialog input:not([type="checkbox"])  {width:100%}
+
+            /*--- button ---*/
+            .dialog button {width:100%;margin-bottom:.5em}
+
+            /*--- links ---*/
+            .dialog form > a {display:table;padding:.4em;font-weight:500;text-align:center;margin:0 auto}
+
+
+
+
+
+
+
+/*--- SIGN UP PAGE -----------------------------------------------*/
+.sign-up {max-width:23em;margin:0 auto}
+
+    /*--- headings ---*/
+    .sign-up h1 {font-size:1.6em;letter-spacing:.05em;text-align:center;font-weight:600;color:#4eabdb}
+        .sign-up h1 span {display:block;font-size:2.9rem;font-size:clamp(2rem, 8.5vw, 2.9rem);letter-spacing:normal;text-transform:none;color:#00457b;margin:0 0 .05em}
+
+        @media (min-width:30em) {
+            .sign-up h1 {margin-left:-2rem;margin-right:-2rem}
+        }
+
+        .sign-up h2 {padding:0;font-size:1.2em;color:#00457b;font-weight:600;text-transform:uppercase;margin:0}
+
+
+    /*--- section headers ---*/
+    .sign-up header {padding:1em 0 .8em;background-color:#f3f3f3;box-shadow:-1.2em 0 #f3f3f3, 1.2em 0 #f3f3f3;margin:0 0 1em}
+        .sign-up header p {font-size:.75em;margin:0}
+
+
+    /*--- form elements ----------------------------*/
+
+        /*--- text inputs ---*/
+        .sign-up .input:not(.checkbox):not(.radio) label, .cc-info .input:not(.checkbox):not(.radio) label, .sign-up legend, .cc-info legend {position:absolute;clip:rect(0 0 0 0)}
+        .sign-up .input:not(.checkbox):not(.radio) input, .cc-info .input:not(.checkbox):not(.radio) input {padding:.6em .5em;border:1px solid #b1b1b1}
+            .sign-up .input:not(.checkbox):not(.radio) input:focus, .cc-info .input:not(.checkbox):not(.radio) input:focus {border-color:#1550a4}
+
+            /*--- placeholder text ---*/
+            .sign-up ::placeholder, .cc-info ::placeholder {font-size:.75em;text-transform:uppercase;color:#6f6f6f}
+
+        /*--- fieldset ---*/
+        .sign-up fieldset {margin-bottom:1em}
+
+        /*--- checkbox/radio ---*/
+        .sign-up .checkbox label, .sign-up .radio label {font-size:.875em;color:#363636;font-weight:normal;margin-bottom:.8em}
+            input[value="Paypal"] + label a {font-size:.75em;font-style:italic}
+            .sign-up .checkbox label {font-size:.75em;margin-bottom:1.5rem}
+            .sign-up .checkbox label::before, .sign-up .radio label::before {top:.2em}
+
+        /*--- intput hint ---*/
+        .input-hint {font-size:.75em;font-style:italic;font-weight:bold}
+
+
+        /*--- credit card group -------------------------*/
+        .cc-info {max-width:23em;margin:0 0 1em}
+
+        @media (min-width:22em) {
+            .cc-info {display:flex;flex-wrap:wrap}
+
+                /*--- input groups ---*/
+                .cc-info > div {flex:0 1 auto}
+                    .cc-info > div:nth-child(odd) {margin-right:1.5rem}
+                    .cc-info > div:nth-child(1) {flex-basis:calc(70% - 1.5rem)}
+                    .cc-info > div:nth-child(2) {flex-basis:30%}
+                    .cc-info > div:nth-child(3) {flex-basis:6em}
+                    .cc-info > div:nth-child(4) {flex-basis:12em}
+        }
+
+    /*--- price callout ----------------*/
+    .sign-up .pricing {margin:2em 0 2em}
+        .sign-up .pricing p {font-size:.875em;font-weight:bold;margin-bottom:.2rem}
+        .sign-up .pricing p span {display:inline-block}
+        .sign-up .pricing p + p {font-size:.75em;font-weight:normal}
+
+
+    /*--- total ----------------*/
+    .sign-up .total {padding:.5em 0;background-color:#00457b;color:#fff;box-shadow:-1.2em 0 #00457b, 1.2em 0 #00457b;margin:0 0 1.2rem}
+        .sign-up .total span {margin-left:1.8em}
+
+
+    /*--- terms ----------------*/
+    .sign-up .total + .input label {font-size:.86em}
+
+
+    /*--- submit button ----------------*/
+    .sign-up button {padding:.8em 2em;background-color:#fbd489;background-image:linear-gradient(#fad796, #f0b746);border:1px solid #c69e53;border-radius:.4em;font-size:.875em;font-weight:bold;color:#00457b;margin:2em auto 4em;transition:opacity .2s}
+        .sign-up button:hover, .sign-up button:focus {opacity:.9}
+
+
+    /*--- footer ----------------*/
+    .sign-up footer {display:flex;flex-wrap:wrap;justify-content:space-between;padding:2em 0;background-color:#363636;box-shadow:10vw 0 #363636, 20vw 0 #363636, 30vw 0 #363636, 40vw 0 #363636, 50vw 0 #363636, 60vw 0 #363636, -10vw 0 #363636, -20vw 0 #363636, -30vw 0 #363636, -40vw 0 #363636, -50vw 0 #363636, -60vw 0 #363636;color:#fff}
+
+    /*--- sections ------------------------*/
+    .sign-up footer > div {margin:0 0 2em}
+        .sign-up footer > div:first-of-type {margin-right:.5rem}
+        .sign-up footer > div:last-of-type {flex-basis:100%;padding:1.5em 0 0;border-top:1px solid #818181}
+
+
+    /*--- content ---*/
+    .sign-up footer h2 {font-size:.875em;color:#fff;margin-bottom:.1rem}
+    .sign-up footer p {font-size:.75em;color:#bebebe;margin-bottom:.1rem;overflow:hidden}
+    .sign-up footer img {float:left;width:3.5em;margin:0 1em .5em 0}
+    .sign-up footer a:hover, .sign-up footer a:focus {color:#ddd}
+    .sign-up footer .bullet-list li {font-size:.75em;margin-bottom:.2em}
+        .sign-up footer .bullet-list li::before {background-color:#818181}
+
+
+
+
+
+
+
+/*--- WELCOME -----------------------------------------------------*/
+.welcome {max-width:34em;margin:0 auto}
+
+    .welcome h1 {margin-bottom:.5rem}
+    .welcome p {margin-bottom:1em}
+    .welcome h1 + p, .welcome p:last-of-type {font-weight:bold;margin-bottom:2rem}
+
+    .welcome .button {margin:0 auto 2rem}
+
+
+
+
+/*--- CHECKMARK INPUT GROUP------------------------------------------------------------------------*/
+.input-group {display:flex;margin:0 0 2em}
+
+    /*--- input group ---*/
+    .input-group .input {flex:1}
+
+    /*--- label ---*/
+    .input-group label {position:absolute;clip:rect(0 0 0 0)}
+
+    /*--- input ---*/
+    .input-group input {flex:1;padding-right:.5em;margin:0}
+        .input-group .input input {height:100%;width:100%}
+
+    /*--- button ---*/
+    .input-group button {display:block;width:1em;height:1em;padding:0;font-size:2.375em;position:relative;margin:0;overflow:hidden;cursor:pointer}
+        .input-group button::before {display:block;height:200%;content:""}
+        .input-group button::after {display:block;width:1em;height:1em;background:url(https://access.thebraincat.com/css/images/braincat-icon-sprite.svg) no-repeat -2em center;background-size:auto 100%;font-size:.6em;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;filter:brightness(0) invert(1);content:""}
+
+
+    /*--- following button ---*/
+    .input-group + button, .input-group + .button {margin-left:auto}
+
+
+
+
+
+
+
+/*--- MULTI-COLUMN LAYOUT -----------------------------------------------------*/
+.multi-pane {flex:0 1 100%}
+    .multi-pane > div {}
+
+    /*--- top, full-width ---*/
+    .multi-pane > div:nth-of-type(1) {}
+
+    /*--- left ---*/
+    .multi-pane > div:nth-of-type(2) {}
+
+    /*--- right ---*/
+    .multi-pane > div:nth-of-type(3) {}
+
+        /*--- right buttons ---*/
+        .multi-pane > div:nth-of-type(3) .button-group .button, .multi-pane > div:nth-of-type(3) .button-group button {min-width:5.6em}
+
+    /*--- bottom left ---*/
+    .multi-pane > div:nth-of-type(4) {}
+
+
+    @media (min-width:70em) { /*--- common breakpoint ---*/
+        .multi-pane {display:grid;grid-template-columns:auto calc(((100%) / 3) + .75rem);transition:grid-template-columns .2s}
+
+            /*--- sidebar hidden state---*/
+            .sidebar.hidden + main.multi-pane {grid-template-columns:auto calc(((100% - 10.5rem) / 3) + .75rem)}
+
+            /*--- first subheadings ---*/
+            .multi-pane > div > h2 {margin-top:0}
+
+            /*--- top, full-width ---*/
+            .multi-pane > div:nth-of-type(1) {grid-column:1 / 3;grid-row:1;grid-auto-rows:min-content}
+
+            /*--- left ---*/
+            .multi-pane > div:nth-of-type(2) {grid-column:1 / 2;grid-row:2}
+
+            /*--- right ---*/
+            .multi-pane > div:nth-of-type(3) {grid-column:2;grid-row:2 / 4;padding-left:1em;border-left:1px solid #bebebe;margin-left:1em;transition:margin-left .2s}
+
+                /*--- category cloud ---*/
+                .multi-pane > div:nth-of-type(3) .category-cloud {position:sticky;top:1em}
+
+            /*--- bottom ---*/
+            .multi-pane > div:nth-of-type(4) {grid-column:1;grid-row:3}
+    }
+
+    @media (min-width:80em) {
+        .multi-pane {grid-template-columns:auto calc(((100%) / 3) + 2rem)}
+
+            /*--- sidebar hidden state---*/
+            .sidebar.hidden + main.multi-pane {grid-template-columns:auto calc(((100% - 10.5rem) / 3) + .75rem)}
+
+        /*--- right ---*/
+        .multi-pane > div:nth-of-type(3) {margin-left:2em}
+
+            /*--- sidebar hidden state---*/
+            .sidebar.hidden + main.multi-pane > div:nth-of-type(3) {margin-left:1em}
+    }
+
+
+
+
+
+
+/*--- PAGINATION -----------------------------------------------------*/
+.pagination {display:flex;flex-wrap:wrap/*;justify-content:center*/}
+    .pagination a {min-width:6.1em;margin:0 .5em .5em}
+
+        /*--- arrows ---*/
+        .pagination a::before, .pagination a::after {display:inline-block;vertical-align:top;width:1em;height:1em;border:0 solid #fff;border-width:.5em .5em 0 0;font-size:.3em;margin-top:1.25em;transform:rotate(225deg)}
+            .pagination a:first-child::before {margin-right:1em;content:""}
+            .pagination a:last-child::after {margin-left:1em;transform:rotate(45deg);content:""}
+
+            /*--- next ---*/
+            .pagination #nextquestion::before {display:none}
+
+
+
+
+
+
+/*--- DISCOVER SETS -----------------------------------------------------*/
+.discover-sets {color:#1550a4;margin:0 0 2em}
+    .discover-sets li {}
+
+        /*--- title ---*/
+        .discover-sets h2 {text-transform:uppercase}
+
+        /*--- description ---*/
+        .discover-sets p {font-weight:bold}
+
+        /*--- question count ---*/
+        .discover-sets div {font-size:.7em}
+
+
+
+
+
+
+/*--- DISCOVER FORM -----------------------------------------------------*/
+.discover-form {margin-top:3em}
+
+
+
+
+
+
+
+
+
+/*--- COMMON LIST/GRID -----------------------------------------------------*/
+.common-grid {margin:0 0 2em}
+    .common-grid > li {display:flex;flex-wrap:wrap;align-items:center;padding:.25em 0;border-bottom:1px solid #bebebe}
+        .common-grid > li:first-child {border-top:1px solid #bebebe}
+
+        /*--- when dragging ---*/
+        .common-grid > li.ui-sortable-helper {border-top:1px solid #bebebe !important}
+
+    /*--- item content ---------------------------*/
+    .common-grid li > div {flex:1;padding:.375em 0;line-height:1.25}
+
+        /*--- editable ----------*/
+        .common-grid li > div[contenteditable]/*, .common-grid li > div*/ {border-bottom:1px solid transparent;transition:border-color .2s, color .2s}
+
+            /*--- hover/focus state ---*/
+            .common-grid li > div[contenteditable]:hover, .common-grid li > div[contenteditable]:focus-within, .common-grid li > div:hover, .common-grid li > div:focus-within {border-color:#1550a4}
+
+        /*--- input/textarea ----------
+        .common-grid li > input, .common-grid li > textarea {flex:1;padding:.375em 0;line-height:1.25;margin:0}
+            .common-grid li > textarea  {height:auto;resize:none;overflow:hidden}
+            .common-grid li > input:not(:focus), .common-grid li > textarea:not(:focus) {border-color:transparent}
+            .common-grid li > input:hover, .common-grid li > textarea:hover {border-bottom-color:#1550a4}*/
+
+        /*--- editable item ----------*/
+        .common-grid li > div form {padding:0;margin:0}
+            .common-grid li > div input {width:100%;padding:0;border:0;margin:0}
+
+            /*--- hover state ---*/
+            .common-grid li > form input:hover, .common-grid li > form input:focus {border-color:#1550a4}
+
+
+        /*--- title/description pairs ----------*/
+        .common-grid dl {flex:1;display:flex;padding:.375em 0;line-height:1.25}
+            .common-grid dt {flex:0 0 30%;margin-right:1em;text-transform:uppercase}
+            .common-grid dd {position:relative}
+
+                /*--- divider ---*/
+                .common-grid dd::before {display:block;width:1px;height:1.25rem;background-color:#bebebe;position:absolute;top:50%;left:-.5em;margin-top:-.625rem;content:""}
+
+            /*--- header row---*/
+            .common-grid > li:first-child dl {padding-right:7.4375rem;color:#1550a4;font-weight:500}
+                .common-grid > li:first-child dt {text-transform:none}
+                .common-grid > li:first-child dd::before {display:none}
+
+
+        /*--- link (project) ---*/
+        .common-grid li > div a {display:block;padding-left:2em;color:#363636;position:relative}
+            .common-grid li > div a::before {display:block;width:1em;height:1em;background:url(https://access.thebraincat.com/css/images/braincat-icon-sprite.svg) no-repeat -44em center;background-size:auto 100%;font-size:1.5em;position:absolute;top:0;left:0;content:""}
+            .common-grid li > div a:hover, .common-grid li > div a:focus {color:#4eabdb}
+
+        /*--- button (folder) ---*/
+        .common-grid li > div button {display:block;padding:0 0 0 2em;background-color:transparent;color:#363636;position:relative;margin:0}
+            .common-grid li > div button::before {display:block;width:1em;height:1em;background:url(https://access.thebraincat.com/css/images/braincat-icon-sprite.svg) no-repeat -20em center;background-size:auto 100%;font-size:1.5em;position:absolute;top:0;left:0;margin:-.15em 0 0;content:""}
+            .common-grid li > div button:hover, .common-grid li > div button:focus {color:#4eabdb}
+                .common-grid li > div button:focus {/* outline:0 --- focus state replaced below ---*/}
+
+
+    /*--- link/button group ---------------*/
+    .common-grid ul:first-of-type {display:flex}
+        .common-grid ul:first-of-type li {position:relative;margin-left:.6em}
+
+        /*--- dividers ---*/
+        .common-grid ul:first-of-type li:not(:first-child)::before {display:block;width:1px;background-color:#bebebe;position:absolute;top:.3em;bottom:.3em;left:calc(-.3em - 1px);content:""}
+
+        /*--- links/buttons ---*/
+        .common-grid ul:first-of-type a, .common-grid ul:first-of-type button {display:block;width:1em;height:1em;padding:0;background-color:transparent;font-size:1.875em;margin:0;overflow:hidden;cursor:pointer}
+        .common-grid ul:first-of-type a::before, .common-grid ul:first-of-type button::before {display:block;height:200%;content:""}
+        .common-grid ul:first-of-type a::after, .common-grid ul:first-of-type button::after {display:block;width:1em;height:1em;background:url(https://access.thebraincat.com/css/images/braincat-icon-sprite.svg) no-repeat 0 center;background-size:auto 100%;font-size:.7em;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;transition:filter .2s;content:""}
+        .common-grid ul:first-of-type a:hover::after, .common-grid ul:first-of-type a:focus::after, .common-grid ul:first-of-type button:hover::after, .common-grid ul:first-of-type button:focus::after {filter:hue-rotate(15deg) saturate(1.36) brightness(.74)}
+
+            /*--- icons (links or buttons) ---*/
+            .common-grid ul:first-of-type a[title="Edit"]::after, .common-grid ul:first-of-type button[title="Edit"]::after {background-position:-4em center}
+            .common-grid ul:first-of-type a[title="Delete"]::after, .common-grid ul:first-of-type button[title="Delete"]::after {background-position:-6em center}
+            .common-grid ul:first-of-type a[title="Star"]::after, .common-grid ul:first-of-type button[title="Star"]::after {background-position:-8em center}
+            .common-grid ul:first-of-type a[title="Video"]::after, .common-grid ul:first-of-type button[title="Video"]::after {background-position:-10em center}
+            .common-grid ul:first-of-type a[title="PDF"]::after, .common-grid ul:first-of-type button[title="PDF"]::after {background-position:-12em center}
+            .common-grid ul:first-of-type a[title="Team"]::after, .common-grid ul:first-of-type button[title="Team"]::after {background-position:-16em center;font-size:.9em}
+            .common-grid ul:first-of-type a[title="Duplicate"]::after, .common-grid ul:first-of-type button[title="Duplicate"]::after {background-position:-14em center}
+            .common-grid ul:first-of-type a[title="Archive"]::after, .common-grid ul:first-of-type button[title="Archive"]::after {background-position:-18em center}
+            .common-grid ul:first-of-type a[title="Select"]::after, .common-grid ul:first-of-type button[title="Select"]::after {background-image:none;border:.1em solid #4eabdb;font-size:.4em}
+            .common-grid ul:first-of-type a[title="Entries"]::after, .common-grid ul:first-of-type button[title="Entries"]::after {background-position:-44em center}
+            .common-grid ul:first-of-type a[title="Questions"]::after, .common-grid ul:first-of-type button[title="Questions"]::after {/*background-position:-34em center;font-size:.6em*/width:1.6666666666666em;background:none;font-size:.6em;text-align:center;content:"Qs"}
+
+            /*--- checked state ---*/
+            .common-grid ul:first-of-type a[title="Star"].checked::after, .common-grid ul:first-of-type button[title="Star"].checked::after {background-position:-52em center}
+            .common-grid ul:first-of-type a[title="Select"].checked::after, .common-grid ul:first-of-type button[title="Select"].checked::after {background-color:#4eabdb}
+
+
+            /*--- content overlay ---*/
+            .common-grid ul:first-of-type a span, .common-grid ul:first-of-type button span {display:flex;align-items:center;justify-content:center;vertical-align:top;height:1em;min-width:1em;padding:.3em;background-color:#fff;border:.05rem solid #818181;border-radius:.8em;font-size:.5rem;font-weight:normal;color:#363636;position:absolute;bottom:0;left:0;z-index:1}
+
+
+        /*--- title/description pairs ---------------*/
+        .common-grid.pairs {}
+            .common-grid.pairs > li {border-top:0}
+
+
+        /*--- categorize ---------------
+        .common-grid.categorize {max-height:21.3em;overflow:auto}*/
+
+
+        /*--- group? ---------------*/
+        .common-grid.group li > div, .common-grid.group input {text-transform:uppercase}
+
+
+        /*--- forms ---*/
+        .common-grid form {}
+
+
+            /*--- input group --------------------*/
+            .common-grid .input-group {flex:0 1 100%;margin:0}
+
+                @media (min-width:35em) {
+                    .common-grid .input-group {flex-basis:30%;min-width:0;margin-left:.5em}
+                }
+
+                /*--- input ---*/
+                .common-grid .input-group input {min-width:0;padding:.25em .5em}
+
+                /*--- button ---*/
+                .common-grid .input-group button {font-size:1.875em}
+
+                /*--- saved state ---*/
+                .common-grid .input-group.saved input {background-color:#f0f0f0}
+
+            /*--- checkbox ---*/
+            .common-grid ul:first-of-type {}
+                .common-grid ul:first-of-type input[type="checkbox"] {}
+                    .common-grid ul:first-of-type input[type="checkbox"] + label {}
+
+
+        /*--- nested items ---*/
+        .common-grid ul:not(:first-of-type) {flex-basis:100%;position:relative;top:.25em}
+            .common-grid ul:not(:first-of-type) > li {display:flex;flex-wrap:wrap;align-items:center;padding:.25em 0 .25em 2em;border-top:1px solid #bebebe}
+
+            /*--- when dragging ---*/
+            .common-grid ul:not(:first-of-type) > li.ui-sortable-helper {border-bottom:1px solid #bebebe}
+
+            /*--- sub-nested items ---*/
+            .common-grid ul:not(:first-of-type):not([class]) > li  ul:not(:first-of-type) > li {padding-left:4em;margin-left:-2em}
+
+
+        /*--- project-listing ---------------*/
+        .common-grid.project-listing {}
+
+            /*--- folder open/close ---*/
+            .common-grid.project-listing ul:not(:first-of-type) {visibility:hidden;height:0;overflow:hidden;transition:visibility .2s 0s, height .2s}
+
+                /*--- open state ---*/
+                .common-grid.project-listing ul:not(:first-of-type).open {visibility:visible;height:auto;transition-delay:0s 0s}
+
+            /*--- time group ---*/
+            .project-listing li > div a span {display:block}
+                .project-listing li > div a span time {display:inline-block;font-size:.7em;color:#818181}
+                    .project-listing li > div a span time:not(:last-child) {margin-right:1em}
+
+
+
+    /*--- sequence & outline ----------------*/
+
+        /*--- group titles ---*/
+        .common-grid.sequence > li > div, .common-grid.outline > li > div {/*padding-top:.4375em;padding-bottom:.3125em*/;font-weight:bold;text-transform:uppercase}
+
+        /*--- category titles ---*/
+        .common-grid.sequence > li > ul > li > div/*, .common-grid.outline > li > ul > li > div*/ {/*padding-top:.4375em;padding-bottom:.3125em*/;text-transform:uppercase}
+
+
+    /*--- sequence----------------*/
+    .common-grid.sequence {}
+
+        /*--- sorting handles ---*/
+        .common-grid.sequence li > div, .common-grid.sequence li dt {padding-left:1.5em;position:relative;cursor:move}
+            .common-grid.sequence li > div:before, .common-grid.sequence li dt:before {display:block;width:1em;height:1em;background:url(https://access.thebraincat.com/css/images/braincat-icon-sprite.svg) no-repeat -22em center;background-size:auto 100%;font-size:1em;position:absolute;top:.5em;left:0;transform:rotate(90deg);content:""}
+                .common-grid.sequence li dt:before {top:.1em}
+
+            /*--- first <dl> ---*/
+            .common-grid.sequence > li:first-child dt {cursor:default}
+                .common-grid.sequence > li:first-child dt:before {display:none}
+
+        /*--- category listings ---*/
+        .common-grid.sequence > li > ul:not(:first-of-type) {min-height:2em}
+
+
+        /*--- help ---------------*/
+        .common-grid.help {border:0}
+            .common-grid.help > li {box-sizing:border-box;padding:.5em;border:1px solid #d3d3d3;margin:0 0 .5em}
+
+        /*--- nested lists (icons)---*/
+        .common-grid.help ul {flex-basis:100%}
+            .common-grid.help ul li:first-child {margin-left:0}
+
+            @media (min-width:30em) {
+                .common-grid.help {display:flex;flex-wrap:wrap;margin-left:-.5em}
+                    .common-grid.help > li {flex-basis:calc(50% - .5em);margin-left:.5em}
+            }
+
+            @media (min-width:40em) {
+                .common-grid.help > li {flex-basis:calc(33.33333333% - .5em)}
+            }
+
+            @media (min-width:60em) {
+                .common-grid.help > li {flex-basis:calc(25% - .5em)}
+            }
+
+
+        /*--- preceded by form ---*/
+        form + .common-grid {margin-top:3em}
+
+
+        /*--- following buttons ---*/
+        .multi-pane .common-grid + button {margin-left:auto}
+
+
+
+
+
+
+
+/*--- GRID TOGGLE -----------------------------------------------------*/
+.grid-toggle {color:#fff !important}
+    .grid-toggle::before {display:none !important}
+
+    /*--- hide grid ---*/
+    #grid-toggle:checked ~ .common-grid {display:none}
+
+
+
+
+
+
+
+/*--- IMPORT FORMS -----------------------------------------------------*/
+.import-form {display:flex;flex-wrap:wrap}
+
+    /*--- groups ---*/
+    .import-form > div {margin:0 0 1em}
+
+        /*--- label ---*/
+        .import-form label {position:absolute;clip:rect(0 0 0 0)}
+
+        /*--- input ---*/
+        .import-form input[type="file"] {height:100%;margin:0}
+
+        /*--- button ---*/
+        .import-form input[type="submit"] {margin:0}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*--- SCRATCHPAD -----------------------------------------------------*/
+#scratchpad {}
+
+
+    /*--- expander button ---*/
+    .scratchpad-toggle {display:block;width:1em;height:1em;padding:0;background-color:transparent;border:.0625em solid #4eabdb;font-size:2em;position:relative;overflow:hidden}
+        .scratchpad-toggle::before {display:block;height:200%;content:""}
+        .scratchpad-toggle:after {display:block;position:absolute;top:-.13em;bottom:0;left:0;right:0;margin:auto;font-size:1em;color:#4eabdb;content:"\02196"}
+        .scratchpad-toggle:hover, .scratchpad-toggle:focus {background-color:transparent;border-color:#1550a4}
+        .scratchpad-toggle:hover::after, .scratchpad-toggle:focus::after {color:#1550a4}
+
+        /*--- expanded state ---*/
+        .scratchpad-toggle.expanded::after {content:"\02198"}
+
+
+    /*--- form ---------------------------*/
+    .scratchpad form {margin-bottom:0}
+
+        /*--- label ---*/
+        .scratchpad label {position:absolute;clip:rect(0 0 0 0)}
+
+        /*--- text area ---*/
+        .scratchpad textarea {width:100%;min-height:10em;transition:min-height .2s}
+
+        /*--- button group ---*/
+        .scratchpad .button-group {margin-bottom:0}
+
+
+    /*--- expanded state --------------------*/
+    #scratchpad.expanded .scratchpad form {}
+        #scratchpad.expanded .scratchpad textarea {min-height:calc(100vh - 10em);transition-delay:.2s}
+
+
+    /*--- expanding content area page elements ----------------------------------*/
+    #scratchpad .sidebar, #scratchpad header.site, #scratchpad .project-title, #scratchpad h1, #scratchpad footer.site {visibility:visible;max-height:150em;overflow:hidden;transition:visibility 0s, width .2s, max-height .2s, padding .2s, margin .2s, opacity .2s .2s}
+        #scratchpad header.site, #scratchpad .project-title, #scratchpad h1, #scratchpad footer.site {box-sizing:border-box;width:100%;max-height:10em}
+            #scratchpad .project-title {max-width:87%}
+
+        @media (max-width:30em) {
+            #scratchpad footer.site {max-height:30em}
+        }
+
+        /*--- sidebar hidden state ---*/
+        #scratchpad .sidebar.hidden {overflow:visible}
+
+        /*--- expanded state ---*/
+        #scratchpad.expanded .sidebar, #scratchpad.expanded header.site, #scratchpad.expanded .project-title, #scratchpad.expanded h1, #scratchpad.expanded footer.site {visibility:hidden;width:0;max-height:0;padding:0;margin:0;opacity:0;transition-delay:.2s, .2s, .2s, .2s, .2s, 0s}
+
+            /*--- sidebar hidden state ---*/
+            #scratchpad.expanded .sidebar.hidden {overflow:hidden}
+
+
+        /*--- content area ---*/
+        #scratchpad main {transition:flex-basis .2s, padding .2s}
+
+            /*--- expanded state ---*/
+            #scratchpad.expanded main {padding-top:1em;padding-bottom:0;flex-basis:100%;transition-delay:.2s, .2s}
+
+
+
+
+
+
+
+
+
+/*--- TEXT BREAKER -----------------------------------------------------*/
+.textbreaker {}
+
+
+    /*--- (radio) buttons -----------------------*/
+    .textbreaker fieldset {margin:0 0 1em}
+
+        /*--- faux buttons (<label>) ---*/
+        .textbreaker fieldset label {display:block;padding:.8em 1.5em;background-color: #4eabdb;line-height:1.2;color:#fff;text-align:center;font-weight:normal;text-transform:uppercase;margin:0 0 2em;cursor:pointer}
+
+            /*--- custom/faux radio selectors ---*/
+            .textbreaker fieldset label::after {display:none}
+
+            .textbreaker fieldset label:hover, .textbreaker fieldset label:focus {background-color:#1550a4;color:#fff !important}
+
+            /*--- hints ---*/
+            .textbreaker fieldset label span {display:block;font-size:.7em;line-height:1.3;text-transform:none;color:#818181;text-align:center;position:absolute;top:100%;left:0;right:0;margin:.5rem auto 0;pointer-events:none}
+
+            /*--- active state ---*/
+            .textbreaker fieldset input:checked + label {background-color:#1550a4;color:#fff}
+
+
+    @media (min-width:30em) {
+        .textbreaker fieldset {display:flex;max-width:30em;margin:0 0 4em -.5rem}
+
+            /*--- faux buttons (<label>) ---*/
+            .textbreaker fieldset label {flex:0 1 calc(33.3333333333% - .5rem);display:flex;justify-content:center;align-items:center;margin:0 0 0 .5rem}
+
+                /*--- hints ---*/
+                .textbreaker fieldset label span {max-width:7em}
+    }
+
+    @media (min-width:50em) {
+        /*--- hints ---*/
+        .textbreaker fieldset label span {visibility:hidden;opacity:0;transition:visibility .2s 0s, opacity .2s}
+
+            /*--- hover state ---*/
+            .textbreaker fieldset label:hover span, .textbreaker fieldset input:checked + label span {visibility:visible;opacity:1;transition-delay:0s, 0s}
+    }
+
+    /*--- touch devices ---*/
+    @media (hover:none) and (pointer:coarse) {
+        /*--- hints ---*/
+        .textbreaker fieldset label span {visibility:visible;opacity:1}
+    }
+
+
+    /*--- text area --------------*/
+    .textbreaker .input label {position:absolute;clip:rect(0 0 0 0)}
+    .textbreaker textarea {width:100%;min-height:10em}
+
+
+
+
+
+
+
+
+/*--- BIG IDEA -----------------------------------------------------*/
+.big-idea {}
+
+    /*--- selectd idea ---*/
+    .big-idea + div {font-size:2emfieldset;font-weight:600;margin:0 0 1em}
+
+
+
+
+
+
+
+
+
+/*--- STICKY NOTES -----------------------------------------------------*/
+.sticky-notes {flex:0 1 100%}
+
+    /*--- sticky note nav -----------------------*/
+    .sticky-nav {display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;margin:0 0 .75em}
+
+        @media (min-width:70em) {
+            .sticky-nav {max-width:57.5em}
+        }
+
+        @media (min-width:100em) { /*--- common breakpoint ---*/
+            .sticky-nav {max-width:none;width:66.666666666%}
+                .sidebar.hidden + main .sticky-nav {max-width:57.5em}
+        }
+
+
+        /*--- all buttons ---*/
+        .sticky-nav button {display:block;width:1em;height:1em;padding:0;position:relative;margin:0 0 .5em;overflow:hidden}
+            .sticky-nav button::before {display:block;height:200%;content:""}
+
+
+        /*--- button group -------------*/
+        .sticky-nav ul:first-of-type {display:flex;margin-right:.5em}
+            .sticky-nav ul:first-of-type button {background-color:transparent;font-size:2rem;margin-right:.2em}
+                .sticky-nav ul:first-of-type button::after {display:block;height:1em;width:1em;background:url(https://access.thebraincat.com/css/images/braincat-icon-sprite.svg) no-repeat -2em center;background-size:auto 100%;font-size:.6em;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;transition:filter .2s;content:""}
+
+                /*--- hover/focus state ---*/
+                .sticky-nav ul:first-of-type button:hover::after, .sticky-nav ul:first-of-type button:focus::after {filter:hue-rotate(15deg) saturate(1.36) brightness(.74)}
+
+                /*--- disabled state ---*/
+                .sticky-nav ul:first-of-type button[disabled] {opacity:.4;pointer-events:none}
+
+            /*--- add note button ---*/
+            .sticky-nav ul:first-of-type button[title="Add Note"]::after {background-position:-34em center}
+
+            /*--- undo button ---*/
+            .sticky-nav ul:first-of-type button[title="Undo"]::after {background-position:-36em center;font-size:.7em}
+
+            /*--- redo button ---*/
+            .sticky-nav ul:first-of-type button[title="Redo"]::after {background-position:-38em center;font-size:.7em}
+
+            /*--- category button ---*/
+            .sticky-nav ul:first-of-type button[title="Add Category"]::after {background-position:-40em center;font-size:.6em}
+
+
+        /*--- color selector -------------*/
+        .sticky-nav ul:last-of-type {display:flex}
+            .sticky-nav ul:last-of-type li {margin-right:.7em}
+                .sticky-nav ul:last-of-type button {background-color:#81e1f8;border-radius:50%;font-size:1.7em;transition:transform .2s}
+                    .sticky-nav ul:last-of-type li:not(:first-child) button:hover, .sticky-nav ul:last-of-type button:focus {transform:scale(1.2)}
+
+                    /*--- item colors ---*/
+                    .sticky-nav ul:last-of-type button[title="Yellow"] {background-color:#ebc43d}
+                    .sticky-nav ul:last-of-type button[title="Red"] {background-color:#f881a1}
+                    .sticky-nav ul:last-of-type button[title="Green"] {background-color:#78d678}
+                    .sticky-nav ul:last-of-type button[title="Blue"] {background-color:#81e1f8}
+
+                    /*--- default selector -------*/
+                    .sticky-nav ul:last-of-type li:first-child button {box-shadow:0 0 0 .1em #fff, 0 0 0em .15em #bebebe}
+
+                        /*--- colors ---*/
+                        .sticky-nav ul:last-of-type li:first-child button.yellow {background-color:#ebc43d}
+                        .sticky-nav ul:last-of-type li:first-child button.red {background-color:#f881a1}
+                        .sticky-nav ul:last-of-type li:first-child button.green {background-color:#78d678}
+                        .sticky-nav ul:last-of-type li:first-child button.blue {background-color:#81e1f8}
+                        .sticky-nav ul:last-of-type li:first-child button.gray {background-color:#bebebe}
+
+
+            /*--- categorize link ---*/
+            .sticky-nav > a {margin:0 0 .8em 0}
+
+
+    /*--- sticky note board --------------------------------------------------*/
+    .sticky-board {min-height:90vh;background-color:#363636;background:#363636 url(images/plus-pattern.svg) top left;background-attachment:local;box-shadow:inset 0 0 .5em rgba(0,0,0,.7);position:relative;color:#fff;margin:0 -.5em 1em;overflow:auto;transition:margin-left .2s}
+
+        @media (min-width:30em) { /*--- common breakpoint ---*/
+            .sticky-board {margin-left:-1em;margin-right:-1em}
+        }
+
+        @media (min-width:80em) { /*--- common breakpoint ---*/
+            .sticky-board {margin-left:-2em}
+
+                /*--- hidden state ---*/
+                .sidebar.hidden + main .sticky-board {margin-left:-1em}
+        }
+
+        /*--- note items --------------------------------*/
+            .sticky-board li {box-sizing:border-box;width:16em;padding:1.5em .5em 1.5em;background-color:#81e1f8;box-shadow:0 0 .2em rgba(0,0,0,.4);position:absolute;z-index:1;color:#363636;margin:.5em;cursor:move;transition:box-shadow .2s, transform .2s}
+
+                /*--- when active or editing ---*/
+                .sticky-board li.active, .sticky-board li:focus-within {box-shadow:0 0 1em rgba(0,0,0,.6);z-index:1000 !important}
+
+                /*--- colors ---*/
+                .sticky-board li.yellow {background-color:#ebc43d}
+                .sticky-board li.red {background-color:#f881a1}
+                .sticky-board li.green {background-color:#78d678}
+                .sticky-board li.blue {background-color:#81e1f8}
+                .sticky-board li.gray {background-color:#bebebe}
+
+                /*--- category version ---*/
+                .sticky-board li.category {background-color:#bebebe}
+                    .sticky-board li.category div {text-transform:uppercase}
+
+                /*--- when dragging ---*/
+                .sticky-board li.ui-sortable-helper {z-index:1001 !important}
+
+            /*--- remove button ---*/
+            .sticky-board li button {display:block;width:1em;height:1em;padding:0;background-color:transparent;font-size:1.8em;position:absolute;top:0;right:0;margin:0;overflow:hidden}
+                .sticky-board li button::before {display:block;height:200%;content:""}
+                .sticky-board li button::after {display:block;height:1em;width:1em;background:url(https://access.thebraincat.com/css/images/braincat-icon-sprite.svg) no-repeat -42em center;background-size:auto 100%;font-size:.3em;position:absolute;top:0;bottom:.5em;left:.5em;right:0;margin:auto;filter:brightness(0) invert(1);content:""}
+
+             /*--- content ---*/
+            .sticky-board li div {display:block;min-height:1.1em;font-family:'Sriracha';font-weight:normal;font-size:1.75em;line-height:1.1;text-align:center}
+                .sticky-board li div:focus {outline:none}
+
+
+            /*--- output version -------------------------*/
+            .sticky-board.output {display:flex}
+                .sticky-board.output ul {min-width:17em}
+                    .sticky-board.output li {position:relative}
+
+
+
+
+
+/*--- PROPORTIONS -----------------------------------------------------*/
+.proportions {}
+
+    .proportions > div {margin:0 0 2em}
+
+    /*--- column structure ---*/
+    @media (min-width:50em) { /*--- common breakpoint ---*/
+         .proportions {display:flex}
+            .proportions > div {flex:0 0 50%}
+            .proportions > div:first-of-type {padding-right:4em}
+    }
+
+
+
+    /*--- selectors ----------------*/
+    .proportions fieldset {display:flex;margin:0 0 1em}
+        .proportions fieldset label {padding:0;text-transform:uppercase;color:#4eabdb;position:relative;margin:0 1.2em 0 0}
+
+            /*--- custom/faux radio selectors ---*/
+            .proportions fieldset label::after {display:none}
+
+        /*--- divider ---*/
+        .proportions fieldset label:not(:last-of-type)::before {display:block;position:absolute;top:0;bottom:0;right:-.6em;border-right:1px solid #bdbcbc;content:""}
+
+        /*--- unchecked state ---*/
+        .proportions fieldset input:not(:checked) + label {cursor:pointer}
+
+        /*--- checked state ---*/
+        .proportions fieldset input:checked + label {font-weight:600}
+
+
+    /*--- pie chart -------------------*/
+    .proportions div[data-t-name="PieChart"] {display:block}
+
+        /*--- SVG wrapper---*/
+        .proportions .bb-pie-chart {}
+
+        /*--- pie pieces ---*/
+        .proportions path {stroke:transparent !important}
+
+        /*--- text ---*/
+        .proportions .bb text {font-family:'Montserrat', sans-serif;font-size:1rem}
+
+
+    /*--- bubble chart -------------------*/
+    .proportions div[data-t-name="PackedBubbleChart"] {display:none}
+
+    /*--- zoom -------------------*/
+    .zoom-control {display:flex;right:auto;left:0}
+        .zoom-control a {display:block;width:1.5em;height:1.5em;border:2px solid #4eabdb;border-radius:50%;position:relative;margin:0 .5em 0 0;overflow:hidden;cursor:pointer;transition:filter .2s}
+            .zoom-control a::before {display:block;height:200%;content:""}
+            .zoom-control a::after {display:block;background-image:linear-gradient(transparent 45%, #4eabdb 45%, #4eabdb 55%, transparent 55%), linear-gradient(to right, transparent 45%, #4eabdb 45%, #4eabdb 55%, transparent 55%);position:absolute;top:.2em;bottom:.2em;left:.2em;right:.2em;margin:auto;content:""}
+            .zoom-control a:last-of-type::after {background-image: linear-gradient(transparent 45%, #4eabdb 45%, #4eabdb 55%, transparent 55%)}
+            .zoom-control a:hover, .zoom-control a:focus {filter:hue-rotate(15deg) saturate(1.36) brightness(.74)}
+
+
+    /*--- sliders -------------------*/
+    .proportions div[data-t-name="ProportionSliders"] {display:none;margin:0 0 2em}
+
+
+    /*--- save button -----------*/
+    .proportions div[data-t-name="SaveButton"] {display:none}
+        .proportions .pv-save-button {}
+            .proportions .pv-save-button a {display:table;padding:.8em 1.5em;background-color:#4eabdb;border:none;line-height:1.2;text-align:center;text-transform:uppercase;font-weight:normal;color:#fff;margin:0 0 1rem;cursor:pointer}
+            .proportions .pv-save-button a:hover, .pv-save-button a:focus {background-color:#1550a4;color:#fff}
+
+            .proportions .pv-save-button .btn-save {float:none !important}
+
+
+
+
+/*--- MIND MAP -----------------------------------------------------*/
+#mindmap {}
+
+    /*--- wrapper ---*/
+    #mindmap .bc-mindmap-component .bc-mindmap {height:90vh}
+
+    /*--- top toggle buttons ---*/
+    #mindmap .btn-bar {}
+        #mindmap .btn-bar button {}
+            #mindmap .btn-bar button i {display:none}
+
+
+    /*--- zoom buttons (inside <canvas>) -------*/
+    #mindmap .vis-navigation {}
+
+        #mindmap .vis-button {display:block;width:1.5em;height:1.5em;background:none;border:2px solid #4eabdb;border-radius:50%;font-size:rem;top:.5em;left:.5em;transition:filter .2s}
+            #mindmap .vis-button::after {display:block;background-image:linear-gradient(transparent 45%, #4eabdb 45%, #4eabdb 55%, transparent 55%), linear-gradient(to right, transparent 45%, #4eabdb 45%, #4eabdb 55%, transparent 55%);position:absolute;top:3px;bottom:3px;left:3px;right:3px;margin:auto;content:""}
+                #mindmap .vis-button:hover, #mindmap .vis-button:focus {box-shadow:none;filter:hue-rotate(15deg) saturate(1.36) brightness(.74)}
+
+                /*--- zoom out variant ---*/
+                #mindmap .vis-zoomOut {left:2.75em}
+                    #mindmap .vis-zoomOut::after {background-image:linear-gradient(transparent 45%, #4eabdb 45%, #4eabdb 55%, transparent 55%)}
+
+            /*--- other buttons ---*/
+            #mindmap .vis-zoomExtends, #mindmap .vis-up, #mindmap .vis-down, #mindmap .vis-left,#mindmap .vis-right {display:none}
+
+
+    /*--- popover content --------------*/
+    #mindmap .webui-popover-content {}
+        #mindmap .webui-popover-content a {color:#4eabdb}
+            #mindmap .webui-popover-content a:hover, #mindmap .webui-popover-content a:focus {background-color:transparent;color:#1550a4}
+
+        /*--- icons ---*/
+        #mindmap .webui-popover-content a .fa {min-width:1.2em}
+
+
+    /*--- edit dialog -------------------*/
+    .jconfirm .jconfirm-scrollpane {max-width:38em;margin:0 auto}
+
+
+
+
+
+
+
+/*--- FLASHCARDS -----------------------------------------------------*/
+.flashcards {max-width:43em;margin:0 0 2em}
+
+
+    /*--- top nav ----------------------------------*/
+    .flashcards fieldset {display:flex;flex-wrap:wrap;align-items:center}
+
+        /*--- group selectors --------*/
+        .flashcards fieldset:first-of-type label {margin-right:1.5em}
+
+        /*--- view selectors ---------*/
+        .flashcards fieldset:nth-of-type(2) {justify-content:center}
+            .flashcards fieldset:nth-of-type(2)::before {width:1.875em;margin-right:auto;content:""}
+
+            /*--- buttons ---*/
+            .flashcards fieldset .button {display:block;padding:.4em .6em;font-size:.875em;color:#fff;margin:0 0 1rem}
+
+                /*--- custom/faux radio selectors ---*/
+                .flashcards fieldset .button::after {display:none}
+
+
+                .flashcards fieldset .button:hover, .flashcards fieldset input:focus .button {color:#fff !important}
+                .flashcards fieldset input:checked + .button {background-color:#1550a4;color:#fff}
+
+                /*--- shuffle ---*/
+                .flashcards fieldset input[type="checkbox"] + .button {width:1em;height:1em;padding:0;font-size:1.875em;margin-left:auto;overflow:hidden}
+                    .flashcards fieldset input[type="checkbox"] + .button::before {display:block;height:100%;position:static;content:""}
+                    .flashcards fieldset input[type="checkbox"] + .button::after {display:block;width:1em;height:1em;background:url(images/braincat-icon-sprite.svg) no-repeat -56em center;background-size: auto 100%;border:0;box-shadow:none;font-size:.7em;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;content:"";filter:invert(1) brightness(100)}
+
+
+    /*--- card ---------------------------------------------*/
+    .flashcards .card {position:relative;margin:0 0 1em;perspective:200em}
+        .flashcards .card::before {display:block;padding-top:60%;content:""} /*--- set proportion ---*/
+
+        @media (min-width:800px) {
+            .flashcards .card {z-index:100}
+        }
+
+        /*--- inner wrapper ---*/
+        .flashcards .card > div {border:1px solid #3e96c3;border-radius:.5rem;box-shadow:0 0 .2em rgba(0,0,0,.2), 0 0 1em rgba(0,0,0,.1);position:absolute;top:0;bottom:0;left:0;right:0;transition:transform 1s;transform-style:preserve-3d}
+
+            /*--- flipped state ---*/
+            .flashcards .card.flipped > div {transform:rotateX(-180deg);transition:transform .5s}
+
+
+            /*--- card 'sides' ------------------------------*/
+            .flashcards .card > div > div {display:flex;flex-direction:column;align-items:center;padding:1em .5em;background:#fff;border-radius:.5rem;position:absolute;top:0;bottom:0;left:0;right:0;z-index:1;backface-visibility:hidden}
+
+                /*--- checkbox ---*/
+                .flashcards .card fieldset {position:absolute;bottom:1em;right:1em;z-index:10;overflow:hidden}
+                .flashcards .card fieldset label {display:block;width:1em;height:1em;padding:0;font-size:1.2em;margin:0}
+                    .flashcards .card fieldset label::before {display:block;height:200%;content:""}
+                    .flashcards .card fieldset label::after {font-size:1em;top:0;left:0}
+
+
+            /*--- title side -----------------*/
+            .flashcards .card > div > div:first-of-type {justify-content:center;background-color:#4eabdb;background-image:linear-gradient(135deg, #4eabdb 50%, #409bc9)}
+
+                /*--- background logo ---
+                .flashcards .card > div > div:first-of-type::before {display:block;height:1em;width:1em;background:url(https://access.thebraincat.com/css/images/braincat-icon-sprite.svg) no-repeat 0 center;background-size:auto 100%;font-size:clamp(10rem, 40vw, 30rem);position:absolute;top:0;bottom:0;left:0;right:0;z-index:-1;margin:auto;opacity:.05;content:""}*/
+
+                /*--- title ---*/
+                .flashcards .card > div > div:first-of-type h2 {padding:0;font-size:clamp(1.5em, 6vw, 2.5em);color:#fff;text-shadow:0 0 .05em rgba(21, 80, 164, 0.65);margin:0}
+
+
+            /*--- content side -------------*/
+            .flashcards .card > div > div:last-of-type {background-image:linear-gradient(135deg, #fff 50%, #f7f7f7);overflow-y:auto;transform:rotateX(-180deg)}
+                /*.flashcards .card div div :first-child {margin-top:auto}
+                .flashcards .card div div :last-child {margin-bottom:auto}*/
+
+                /*--- list ---*/
+                .flashcards .card > div > div:last-of-type ul {max-width:30em;margin-top:auto;margin-bottom:auto}
+                    .flashcards .card > div > div:last-of-type li {font-size:clamp(1em, 3.5vw, 1.25em);margin-bottom:.5rem}
+
+
+        /*--- pagination ------------------*/
+        .flashcards .pagination {justify-content:center}
+
+            /*--- items ---*/
+            .flashcards .pagination a, .flashcards .pagination button {margin-bottom:0}
+
+            /*--- prev/next ---*/
+            .flashcards .pagination a {display:block;max-width:2.8em;min-width:0;max-height:2.8em;padding:0;position:relative;overflow:hidden}
+                .flashcards .pagination a::before {display:block;width:0;height:200%;border:0;content:"";transform:none}
+                .flashcards .pagination a::after {display::block;width:1em;height:1em;border:0 solid #fff;border-width:.5em .5em 0 0;font-size:.3em;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;content:""}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)https://dev.frontmend.com/thebraincat.com/scratch.html# -->
+<html lang="en" class="js-focus-visible" data-js-focus-visible="">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>FLASHCARDS</title>
+      <meta name="description" content="">
+      <link rel="stylesheet" href="./css/styles.css">
+      <link rel="stylesheet" href="./css/css2">
+      <script defer="" src="./js/jquery.min.js"></script>
+      <!--<script defer src="https://access.thebraincat.com/js/jquery.jeditable.js"></script>
+         <script defer src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+         <script defer src="https://access.thebraincat.com/js/touch-punch.min.js"></script>-->
+      <script defer="" src="./js/scripts.js"></script>
+      <style type="text/css">
+         @font-face {
+         font-weight: 400;
+         font-style:  normal;
+         font-family: 'Circular-Loom';
+         src: url('https://cdn.loom.com/assets/fonts/circular/CircularXXWeb-Book-cd7d2bcec649b1243839a15d5eb8f0a3.woff2') format('woff2');
+         }
+         @font-face {
+         font-weight: 500;
+         font-style:  normal;
+         font-family: 'Circular-Loom';
+         src: url('https://cdn.loom.com/assets/fonts/circular/CircularXXWeb-Medium-d74eac43c78bd5852478998ce63dceb3.woff2') format('woff2');
+         }
+         @font-face {
+         font-weight: 700;
+         font-style:  normal;
+         font-family: 'Circular-Loom';
+         src: url('https://cdn.loom.com/assets/fonts/circular/CircularXXWeb-Bold-83b8ceaf77f49c7cffa44107561909e4.woff2') format('woff2');
+         }
+         @font-face {
+         font-weight: 900;
+         font-style:  normal;
+         font-family: 'Circular-Loom';
+         src: url('https://cdn.loom.com/assets/fonts/circular/CircularXXWeb-Black-bf067ecb8aa777ceb6df7d72226febca.woff2') format('woff2');
+         }
+      </style>
+      <style type="text/css">@font-face {
+         font-family: 'rbicon';
+         src: url(chrome-extension://dipiagiiohfljcicegpgffpbnjmgjcnf/fonts/rbicon.woff2) format("woff2");
+         font-weight: normal;
+         font-style: normal; }
+      </style>
+   </head>
+   <body>
+      <!-- <header class="site">
+         <nav>
+            <ul>
+               <li><a href="https://dev.frontmend.com/thebraincat.com/scratch.html#" title="Dashboard">Dashboard</a></li>
+               <li class="active"><a href="https://dev.frontmend.com/thebraincat.com/scratch.html#">Input</a></li>
+               <li><a href="https://dev.frontmend.com/thebraincat.com/scratch.html#">Organize</a></li>
+               <li><a href="https://dev.frontmend.com/thebraincat.com/scratch.html#">Output</a></li>
+            </ul>
+         </nav>
+      </header> -->
+      <div class="wrapper">
+         <!-- <nav class="sidebar">
+            <button type="button" title="Menu">Menu</button>
+            <h2>Input</h2>
+            <ul>
+               <li class="active"><a href="https://dev.frontmend.com/thebraincat.com/input">Add Input</a></li>
+            </ul>
+            <h3>Tools &amp; Options</h3>
+            <ul>
+               <li><a href="https://dev.frontmend.com/thebraincat.com/discover">Discover</a></li>
+               <li><a href="https://dev.frontmend.com/thebraincat.com/import">Import</a></li>
+               <li><a href="https://dev.frontmend.com/thebraincat.com/textbreaker">TextBreaker</a></li>
+               <li><a href="https://dev.frontmend.com/thebraincat.com/pre-set-categories">Pre-set Categories</a></li>
+            </ul>
+            <ul>
+               <li><a href="https://dev.frontmend.com/thebraincat.com/help">Help</a></li>
+               <li><a href="https://dev.frontmend.com/thebraincat.com/signout">Signout</a></li>
+            </ul>
+         </nav> -->
+         <main>
+            <div class="project-title">Project Title</div>
+            <h1>Flashcards</h1>
+            <div class="flashcards">
+               <fieldset>
+                  <fieldset>
+                     <input id="flashcards-starred" type="radio" name="flashcard-group" checked="">
+                     <label for="flashcards-starred">Starred</label>
+                     <input id="flashcards-all" type="radio" name="flashcard-group">
+                     <label for="flashcards-all">All</label>
+                     <input id="flashcards-revise" type="radio" name="flashcard-group">
+                     <label for="flashcards-revise">Revise</label>
+                  </fieldset>
+                  <fieldset>
+                     <button id="front" class="active" type="button">Front</button>
+                     <button  id="back" type="button">Back</button>
+                     <button id="shuffle" type="button">Shuffle</button>
+                  </fieldset>
+               </fieldset>
+               <div id="#card" class="card">
+                  <div>
+                     <div class="front-face">
+                        <h2>Flashcard Title</h2>
+                        <fieldset>
+                           <input class="revise-checkbox" id="flashcards-revise-select-front" type="checkbox">
+                           <label for="flashcards-revise-select-front">Add To Revise List</label>
+                        </fieldset>
+                     </div>
+                     <div class="back-face">
+                        <ul class="bullet-list">
+                           <li>Lorem ipsum dolor sit amet</li>
+                           <li>Sit amet bibendum tellus est nec nis</li>
+                           <li>Fonsie dacilisis</li>
+                           <li>Quisque ipsum dolor sit amet</li>
+                        </ul>
+                        <fieldset>
+                           <input id="flashcards-revise-select-back" type="checkbox">
+                           <label for="flashcards-revise-select-back">Add To Revise List</label>
+                        </fieldset>
+                     </div>
+                  </div>
+               </div>
+               <div class="pagination">
+                  <a href="javascript:void(0)" class="button" id="previous">Previous</a>
+                  <button type="button">Flip</button>
+                  <a href="javascript:void(0)" class="button" id="next">Next</a>
+               </div>
+            </div>
+         </main>
+      </div>
+      <footer class="site">
+         <a href="https://dev.frontmend.com/i/refund-policy">Refund Policy</a> | <a href="https://dev.frontmend.com/i/privacy-policy">Privacy Policy</a> | <a href="https://dev.frontmend.com/i/terms-conditions">Terms &amp; Conditions</a> | <a href="https://dev.frontmend.com/i/eula">License Agreement</a><br> © 2018-2020 <span>Jon Ward.</span> <span>All rights reserved. Braincat is a registered trademark of Jon Ward.</span>
+      </footer>
+      <div id="rememberry__extension__root" style="all: unset;"></div>
+   </body>
+   <loom-container id="lo-engage-ext-container">
+      <loom-shadow classname="resolved"></loom-shadow>
+   </loom-container>
+</html>
